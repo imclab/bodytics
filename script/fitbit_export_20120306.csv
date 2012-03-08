@@ -1,0 +1,1273 @@
+Body
+Date,Weight,BMI,Fat,Blood Pressure,Resting Heart Rate,Day Score,Morning Score
+2012-01-24,64.88,18.96,10.199000358581543,116.0/55.0,75.0,3.0,2.0
+2012-01-25,64.9,18.96,10.199000358581543,122.0/68.0,65.0,4.0,2.0
+2012-01-26,65.4,19.11,10.0,121.0/63.0,63.0,4.0,1.0
+2012-01-27,65.4,19.11,9.979999542236328,0.0/0.0,0.0,4.0,1.0
+2012-01-28,65.4,19.11,9.960000038146973,0.0/0.0,0.0,2.0,1.0
+2012-01-29,65.4,19.11,9.9399995803833,0.0/0.0,0.0,4.0,2.0
+2012-01-30,65.3,19.08,9.920000076293945,0.0/0.0,0.0,3.0,1.0
+2012-01-31,65.2,19.05,9.89900016784668,0.0/0.0,0.0,3.0,1.0
+2012-02-01,65.8,19.23,10.14900016784668,0.0/0.0,0.0,5.0,3.0
+2012-02-02,66.4,19.4,10.39900016784668,0.0/0.0,0.0,4.0,2.0
+2012-02-03,66.39,19.4,10.343999862670898,0.0/0.0,0.0,4.0,1.0
+2012-02-04,66.38,19.39,10.288999557495117,0.0/0.0,0.0,3.0,1.0
+2012-02-05,66.37,19.39,10.234000205993652,0.0/0.0,0.0,3.0,2.0
+2012-02-06,66.36,19.39,10.178999900817871,0.0/0.0,0.0,3.0,1.0
+2012-02-07,66.35,19.38,10.12399959564209,0.0/0.0,0.0,3.0,2.0
+2012-02-08,66.33,19.38,10.069000244140625,0.0/0.0,0.0,4.0,1.0
+2012-02-09,66.32,19.38,10.013999938964844,0.0/0.0,0.0,3.0,1.0
+2012-02-10,66.31,19.38,9.958999633789062,0.0/0.0,0.0,4.0,1.0
+2012-02-11,66.3,19.37,9.89900016784668,0.0/0.0,0.0,3.0,3.0
+2012-02-12,66.75,19.5,10.24899959564209,0.0/0.0,0.0,3.0,3.0
+2012-02-13,67.2,19.63,10.600000381469727,0.0/0.0,0.0,3.0,2.0
+2012-02-14,67.25,19.65,10.25,0.0/0.0,0.0,3.0,3.0
+2012-02-15,67.3,19.66,9.89900016784668,0.0/0.0,0.0,4.0,2.0
+2012-02-16,67.35,19.68,10.131999969482422,0.0/0.0,0.0,3.0,1.0
+2012-02-17,67.4,19.69,10.364999771118164,0.0/0.0,0.0,3.0,2.0
+2012-02-18,67.45,19.71,10.597999572753906,0.0/0.0,0.0,3.0,2.0
+2012-02-19,67.5,19.72,10.831000328063965,0.0/0.0,0.0,3.0,2.0
+2012-02-20,67.55,19.74,11.064000129699707,0.0/0.0,0.0,3.0,2.0
+2012-02-21,67.6,19.75,11.300000190734863,0.0/0.0,0.0,4.0,1.0
+2012-02-22,68.0,19.87,11.49899959564209,0.0/0.0,0.0,4.0,1.0
+2012-02-23,68.1,19.9,11.699000358581543,0.0/0.0,0.0,5.0,1.0
+2012-02-24,68.33,19.97,11.864999771118164,0.0/0.0,0.0,4.0,2.0
+2012-02-25,68.57,20.03,12.031000137329102,0.0/0.0,0.0,4.0,3.0
+2012-02-26,68.8,20.1,12.199000358581543,0.0/0.0,0.0,4.0,2.0
+2012-02-27,68.45,20.0,12.0,0.0/0.0,0.0,3.0,2.0
+2012-02-28,68.1,19.9,11.800000190734863,0.0/0.0,0.0,3.0,1.0
+2012-02-29,67.6,19.75,12.100000381469727,0.0/0.0,0.0,3.0,1.0
+2012-03-01,67.7,19.78,11.199000358581543,0.0/0.0,0.0,2.0,2.0
+2012-03-02,67.7,19.78,11.199000358581543,0.0/0.0,0.0,2.0,1.0
+2012-03-03,67.7,19.78,11.199000358581543,0.0/0.0,0.0,4.0,2.0
+2012-03-04,67.7,19.78,11.199000358581543,0.0/0.0,0.0,3.0,2.0
+
+Foods
+Date,CaloriesIn
+2012-01-24,2380
+2012-01-25,2855
+2012-01-26,3203
+2012-01-27,2245
+2012-01-28,1749
+2012-01-29,2106
+2012-01-30,2561
+2012-01-31,2755
+2012-02-01,3288
+2012-02-02,2623
+2012-02-03,2262
+2012-02-04,1938
+2012-02-05,2183
+2012-02-06,2829
+2012-02-07,2359
+2012-02-08,3089
+2012-02-09,3092
+2012-02-10,2330
+2012-02-11,2928
+2012-02-12,2944
+2012-02-13,3787
+2012-02-14,2939
+2012-02-15,3016
+2012-02-16,3178
+2012-02-17,3259
+2012-02-18,3011
+2012-02-19,3054
+2012-02-20,2622
+2012-02-21,3338
+2012-02-22,2863
+2012-02-23,2581
+2012-02-24,2476
+2012-02-25,2351
+2012-02-26,2936
+2012-02-27,2688
+2012-02-28,2771
+2012-02-29,2873
+2012-03-01,2496
+2012-03-02,2098
+2012-03-03,2964
+2012-03-04,2418
+
+Activities
+Date,Calories Burned,Steps,Distance,Floors,Minutes Sedentary,Minutes Lightly Active,Minutes Fairly Active,Minutes Very Active,Activity Calories,Active Score
+2012-01-24,2793,8714,8.53,6,631,176,124,41,1509,947
+2012-01-25,2731,7603,8.51,3,659,174,95,43,1409,894
+2012-01-26,2984,8952,10.07,2,601,218,140,41,1759,1110
+2012-01-27,2977,9724,11.16,13,619,187,118,53,1704,1104
+2012-01-28,2368,2973,2.69,10,620,178,84,14,999,584
+2012-01-29,2693,7256,6.29,14,650,249,84,35,1432,862
+2012-01-30,2883,8917,8.39,19,597,221,122,44,1645,1024
+2012-01-31,2900,8693,10.21,5,645,190,121,44,1626,1039
+2012-02-01,2842,8292,10.37,7,652,166,105,44,1533,968
+2012-02-02,2990,9712,10.44,6,638,240,110,46,1768,1094
+2012-02-03,2878,9292,10.0,10,641,183,110,48,1585,999
+2012-02-04,2815,9549,8.12,12,551,201,119,43,1543,946
+2012-02-05,3123,11567,9.61,15,491,270,145,59,1981,1207
+2012-02-06,2862,7978,8.82,10,645,198,111,41,1574,985
+2012-02-07,2767,6848,7.15,4,647,224,102,32,1488,905
+2012-02-08,2931,10163,9.22,4,637,157,155,51,1658,1044
+2012-02-09,2953,9605,9.21,8,602,216,123,50,1711,1063
+2012-02-10,2958,8373,9.58,4,587,226,125,42,1721,1067
+2012-02-11,2996,10578,8.12,8,485,258,179,39,1857,1099
+2012-02-12,3043,12852,10.96,34,518,300,107,50,1877,1139
+2012-02-13,3330,15504,13.23,38,417,254,187,68,2235,1358
+2012-02-14,3273,15012,13.17,17,485,236,146,64,2077,1310
+2012-02-15,2870,8873,8.56,5,689,205,94,44,1545,972
+2012-02-16,3021,10055,10.76,8,636,223,94,53,1733,1099
+2012-02-17,3789,23594,21.6,26,474,184,167,115,2633,1744
+2012-02-18,2759,9242,7.29,14,519,256,88,30,1491,878
+2012-02-19,3191,16227,14.01,34,339,274,122,55,2015,1242
+2012-02-20,2846,11276,10.51,35,538,218,91,40,1558,952
+2012-02-21,2978,9405,9.5,13,657,231,94,48,1687,1063
+2012-02-22,3063,8847,10.51,6,622,253,97,43,1795,1134
+2012-02-23,3021,9364,9.25,11,611,230,132,46,1771,1099
+2012-02-24,2863,7546,8.45,4,651,192,114,39,1545,946
+2012-02-25,2867,5869,6.09,15,519,269,134,22,1647,949
+2012-02-26,2662,4034,3.49,5,585,328,82,5,1427,778
+2012-02-27,2978,8693,10.45,6,697,217,93,43,1669,1042
+2012-02-28,3200,10292,10.86,5,561,241,154,45,1985,1249
+2012-02-29,2945,8526,9.56,3,646,192,120,43,1636,1035
+2012-03-01,2777,7951,8.03,5,689,208,80,38,1428,894
+2012-03-02,2878,7535,9.07,2,658,223,77,39,1545,978
+2012-03-03,2737,4441,4.36,3,628,261,83,17,1431,860
+2012-03-04,2886,7786,6.19,7,592,364,97,17,1725,985
+
+Sleep
+Date,Minutes Asleep,Minutes Awake,Number of Awakenings,Time in Bed
+2012-01-24,392,50,22,468
+2012-01-25,434,28,17,469
+2012-01-26,369,48,22,440
+2012-01-27,385,45,17,442
+2012-01-28,436,115,40,565
+2012-01-29,328,83,30,422
+2012-01-30,413,37,17,456
+2012-01-31,383,42,14,435
+2012-02-01,401,58,20,478
+2012-02-02,342,54,22,406
+2012-02-03,395,41,12,458
+2012-02-04,420,97,30,526
+2012-02-05,383,78,23,475
+2012-02-06,360,75,28,445
+2012-02-07,358,61,16,435
+2012-02-08,348,84,26,440
+2012-02-09,389,51,21,449
+2012-02-10,386,60,16,460
+2012-02-11,419,50,22,479
+2012-02-12,402,43,21,465
+2012-02-13,473,27,14,514
+2012-02-14,392,45,25,509
+2012-02-15,356,47,21,408
+2012-02-16,351,62,27,434
+2012-02-17,409,88,27,499
+2012-02-18,452,84,32,548
+2012-02-19,529,104,34,650
+2012-02-20,473,63,27,553
+2012-02-21,348,44,18,410
+2012-02-22,358,58,20,425
+2012-02-23,361,54,18,421
+2012-02-24,372,52,21,444
+2012-02-25,406,84,25,496
+2012-02-26,369,41,20,440
+2012-02-27,303,47,19,390
+2012-02-28,368,57,18,439
+2012-02-29,319,53,20,439
+2012-03-01,365,48,16,425
+2012-03-02,379,48,16,443
+2012-03-03,382,50,18,451
+2012-03-04,297,48,18,370
+
+food_log_20120124
+Meal,Food,Calories
+Breakfast
+,Yoghurt Parfait With Strawberries And Blueberries,300
+Morning Snack
+,Mixed Nuts,180
+Lunch
+,Citi Salad,600
+Afternoon Snack
+,Protein Plus Bar, Chocolate Peanut Butter,300
+Dinner
+,Bento Box,1000
+Daily Totals
+,Calories,2380
+,Fat,22 g
+,Fiber,3 g
+,Carbs,45 g
+,Sodium,310 mg
+,Protein,29 g
+,Water,1945.90 ml
+
+food_log_20120125
+Meal,Food,Calories
+Anytime
+,Celery,14
+,Mixed Nuts,180
+,Apple,130
+,Rice Krispies,191
+,Milk,184
+Breakfast
+,Rice Krispies,191
+,Milk,184
+Lunch
+,Beef Stew,761
+,Beans,95
+,Potato,100
+Dinner
+,Spaghetti Bolognese Entree,540
+,Salad,123
+,Ice Cream, Coffee,162
+Daily Totals
+,Calories,2855
+,Fat,105 g
+,Fiber,48 g
+,Carbs,375 g
+,Sodium,5788 mg
+,Protein,123 g
+,Water,1945.90 ml
+
+food_log_20120126
+Meal,Food,Calories
+Anytime
+,Psyllium Fibre Capsules,10
+,Fiber Plus Antioxidants,187
+,Milk,184
+Breakfast
+,Rice Krispies,229
+,Milk,184
+Morning Snack
+,Mixed Nuts,180
+Lunch
+,Meatloaf,869
+,Rice,206
+,Zucchini,14
+Afternoon Snack
+,Mixed Nuts,180
+,Protein Plus Bar, Chocolate Peanut Butter,300
+Dinner
+,Beef Vegetable Barley Soup,480
+,Coffee Ice Cream,180
+Daily Totals
+,Calories,3203
+,Fat,136 g
+,Fiber,38 g
+,Carbs,346 g
+,Sodium,5446 mg
+,Protein,160 g
+,Water,3311.00 ml
+
+food_log_20120127
+Meal,Food,Calories
+Breakfast
+,Rice Krispies,267
+,Milk,184
+Lunch
+,Chicken Salad Plate,923
+Dinner
+,Crab, Blue, Cooked,69
+,Bread, White,125
+,Curry Chicken,397
+,Potato,100
+,Coconut Sorbet Pints Ice Cream,180
+Daily Totals
+,Calories,2245
+,Fat,74 g
+,Fiber,24 g
+,Carbs,327 g
+,Sodium,3517 mg
+,Protein,95 g
+,Water,2400.00 ml
+
+food_log_20120128
+Meal,Food,Calories
+Breakfast
+,Cajun chicken wrap,470
+Lunch
+,Cheeseburger w/Onion,480
+,Iced Coffee,44
+Afternoon Snack
+,Coffee, Instant,0
+Dinner
+,Sea Bass, Cooked,250
+,Mussel, Blue, Cooked,195
+,Bread, Dark,114
+,Fruit, Mixed, Homogenized, No Sugar Added,196
+Daily Totals
+,Calories,1749
+,Fat,64 g
+,Fiber,13 g
+,Carbs,153 g
+,Sodium,2551 mg
+,Protein,137 g
+,Water,2000.00 ml
+
+food_log_20120129
+Meal,Food,Calories
+Anytime
+,Rice Krispies,306
+,Milk,184
+Breakfast
+,Milk,184
+,Fiber One,59
+,Apple,80
+Lunch
+,Shrimp, Cooked,95
+,Smoked Salmon Benedict,650
+Dinner
+,Chicken stew,350
+,Mashed Potato,132
+,Cabbage, Boiled, No Salt,66
+Daily Totals
+,Calories,2106
+,Fat,25 g
+,Fiber,26 g
+,Carbs,178 g
+,Sodium,1428 mg
+,Protein,57 g
+,Water,0 ml
+
+food_log_20120130
+Meal,Food,Calories
+Anytime
+,Protein Plus Bar, Chocolate Crisp,290
+Breakfast
+,Fiber Plus Antioxidants,340
+,Milk,184
+Morning Snack
+,Mixed Nuts,180
+Lunch
+,Rice,206
+,French Style Green Beans,40
+,Fish Plank,315
+Afternoon Snack
+,Mixed Nuts,180
+Dinner
+,Cabbage, Boiled, No Salt,110
+,Chili Con Carne,510
+,Rice,206
+Daily Totals
+,Calories,2561
+,Fat,89 g
+,Fiber,56 g
+,Carbs,318 g
+,Sodium,4288 mg
+,Protein,138 g
+,Water,0 ml
+
+food_log_20120131
+Meal,Food,Calories
+Anytime
+,Protein Plus Bar, Chocolate Crisp,290
+,100% Whey Protein Fuel,130
+,Milk,104
+Breakfast
+,Rice Krispies,267
+,Milk,184
+Morning Snack
+,Peanuts,180
+Lunch
+,Citi Salad,600
+Afternoon Snack
+,Peanuts,180
+Dinner
+,Pasta, Boiled,645
+,Pesto Sauce,95
+,Apple,80
+Daily Totals
+,Calories,2755
+,Fat,81 g
+,Fiber,17 g
+,Carbs,253 g
+,Sodium,2057 mg
+,Protein,113 g
+,Water,0 ml
+
+food_log_20120201
+Meal,Food,Calories
+Breakfast
+,Rice Krispies,153
+,Milk,186
+Morning Snack
+,Peanuts,120
+Lunch
+,Broccoli,56
+,Macaroni & Cheese,576
+,Beef Stew,230
+Afternoon Snack
+,Peanuts,120
+Dinner
+,Beet, Raw,35
+,Asparagus,25
+,Chevretine Goat's Milk Cheese,80
+,Salmon,528
+,Rice,206
+,Chocolate Cake,973
+Daily Totals
+,Calories,3288
+,Fat,163 g
+,Fiber,24 g
+,Carbs,324 g
+,Sodium,5784 mg
+,Protein,146 g
+,Water,0 ml
+
+food_log_20120202
+Meal,Food,Calories
+Breakfast
+,Rice Krispies,138
+,Milk,134
+Morning Snack
+,Peanuts,120
+Lunch
+,Rice,206
+,Broccoli,56
+,Sugar Snap Peas,33
+,Pork,290
+,Chicken,235
+Afternoon Snack
+,Peanuts,120
+,Protein Plus Bar, Chocolate Peanut Butter,300
+Dinner
+,Curry Sauce,149
+,Prawns,86
+,Rice,412
+,Hummus,150
+,Crackers, Salted,194
+Daily Totals
+,Calories,2623
+,Fat,106 g
+,Fiber,25 g
+,Carbs,284 g
+,Sodium,4804 mg
+,Protein,144 g
+,Water,0 ml
+
+food_log_20120203
+Meal,Food,Calories
+Breakfast
+,Rice Krispies,180
+,Milk,190
+Morning Snack
+,Peanuts,120
+Lunch
+,Citi Salad,700
+Afternoon Snack
+,Peanuts,120
+,100% Whey Protein Fuel,130
+,Milk,104
+,Apple,80
+Dinner
+,Mushrooms,24
+,Sake Rice Wine,114
+,Tempura Shrimp,180
+,Beef, Sirloin, Raw,217
+,Ice Cream, Fat 14%,68
+,Salmon, Pink, Raw,35
+Daily Totals
+,Calories,2262
+,Fat,63 g
+,Fiber,17 g
+,Carbs,140 g
+,Sodium,1314 mg
+,Protein,96 g
+,Water,0 ml
+
+food_log_20120204
+Meal,Food,Calories
+Breakfast
+,Fruit and Yogurt Parfait,220
+Lunch
+,Chorizo, Pork & Beef,227
+,Egg,80
+,Potato, Baked,238
+Afternoon Snack
+,Hot Chocolate,207
+,Nachos,193
+,Apple Cider,473
+Dinner
+,Bento Box,300
+Daily Totals
+,Calories,1938
+,Fat,53 g
+,Fiber,27 g
+,Carbs,252 g
+,Sodium,1800 mg
+,Protein,58 g
+,Water,0 ml
+
+food_log_20120205
+Meal,Food,Calories
+Breakfast
+,Cake, 8", 1/8 slice of cake,410
+Lunch
+,Turkey Burger,687
+,Citrus Salad,48
+,Fries,620
+Dinner
+,Rice,103
+,Curry Sauce,149
+,Fish, Minced,56
+,Asian Dumplings,110
+Daily Totals
+,Calories,2183
+,Fat,106 g
+,Fiber,13 g
+,Carbs,229 g
+,Sodium,2241 mg
+,Protein,70 g
+,Water,0 ml
+
+food_log_20120206
+Meal,Food,Calories
+Anytime
+,Hummus,90
+,Crackers, Salted,97
+,Protein Plus Bar, Chocolate Crisp,290
+,100% Whey Protein Fuel,130
+,Milk,104
+,Fiber Capsules,10
+Breakfast
+,Fiber Plus Antioxidants,221
+,Milk,159
+Morning Snack
+,Peanuts,120
+Lunch
+,Citi Salad,700
+Afternoon Snack
+,Peanuts,240
+Dinner
+,Pasta, Boiled,555
+,Cheese,113
+Daily Totals
+,Calories,2829
+,Fat,86 g
+,Fiber,32 g
+,Carbs,251 g
+,Sodium,2479 mg
+,Protein,117 g
+,Water,0 ml
+
+food_log_20120207
+Meal,Food,Calories
+Breakfast
+,Fiber Plus Antioxidants,255
+,Milk,173
+Lunch
+,Pasta, Boiled,452
+,Tomato Sauce,18
+,Cheese,85
+,Coffee,6
+Afternoon Snack
+,Apple,80
+Dinner
+,Pasta, Boiled,1290
+Daily Totals
+,Calories,2359
+,Fat,67 g
+,Fiber,36 g
+,Carbs,367 g
+,Sodium,2947 mg
+,Protein,87 g
+,Water,0 ml
+
+food_log_20120208
+Meal,Food,Calories
+Breakfast
+,Fiber Plus Antioxidants,255
+,Milk,159
+Morning Snack
+,Peanuts,120
+,Coffee,6
+Lunch
+,Citi Salad,700
+Afternoon Snack
+,Peanuts,120
+,Protein Plus Bar, Chocolate Peanut Butter,300
+,Coffee,6
+Dinner
+,Chicken Rice Soup,474
+,Hummus,120
+,Beer, Alc. 5 % By Vol.,829
+Daily Totals
+,Calories,3089
+,Fat,49 g
+,Fiber,30 g
+,Carbs,285 g
+,Sodium,4500 mg
+,Protein,95 g
+,Water,0 ml
+
+food_log_20120209
+Meal,Food,Calories
+Anytime
+,100% Whey Protein Fuel,130
+,Milk,104
+Breakfast
+,Fiber Plus Antioxidants,255
+,Milk,159
+Morning Snack
+,Peanuts,120
+,Coffee,6
+Lunch
+,Citi Salad,700
+Afternoon Snack
+,Peanuts,120
+,Coffee,6
+Dinner
+,Potato Leek Soup,120
+,Chicken Pot Pie,872
+,Lemon Pie,500
+Daily Totals
+,Calories,3092
+,Fat,115 g
+,Fiber,25 g
+,Carbs,260 g
+,Sodium,3376 mg
+,Protein,95 g
+,Water,0 ml
+
+food_log_20120210
+Meal,Food,Calories
+Anytime
+,Milk,104
+,100% Whey Protein Fuel,130
+Breakfast
+,Fiber Plus Antioxidants,255
+,Milk,159
+Morning Snack
+,Apple,80
+Lunch
+,Citi Salad,1050
+Dinner
+,Shrimp Pad Thai,490
+,Mung Bean, Sprouted, Stir-fried,62
+Daily Totals
+,Calories,2330
+,Fat,24 g
+,Fiber,25 g
+,Carbs,212 g
+,Sodium,2159 mg
+,Protein,70 g
+,Water,0 ml
+
+food_log_20120211
+Meal,Food,Calories
+Anytime
+,100% Whey Protein Fuel,130
+,Milk,104
+,Hummus,120
+,Classic Crackers,15
+,Fiber Capsules,10
+Breakfast
+,Cereal, Honey Clusters,192
+,Milk,152
+Lunch
+,Eggs Benedict,885
+Afternoon Snack
+,Tall - Hot Chocolate - whip  - 2% Milk,290
+Dinner
+,Beer, Alc. 5 % By Vol.,153
+,New England Clam Chowder,110
+,Swedish Meatballs,350
+,Mashed Potato,340
+,Mixed Vegetables,77
+Daily Totals
+,Calories,2928
+,Fat,140 g
+,Fiber,34 g
+,Carbs,307 g
+,Sodium,5446 mg
+,Protein,136 g
+,Water,0 ml
+
+food_log_20120212
+Meal,Food,Calories
+Anytime
+,100% Whey Protein Fuel,130
+,Milk,104
+,Protein Plus Bar, Chocolate Crisp,290
+Breakfast
+,Protein Plus Bar, Chocolate Crisp,290
+Lunch
+,Lake Trout, Smoked Fillet,211
+,Salad,123
+,Hot Fudge Sundae,830
+Dinner
+,Beer, Alc. 5 % By Vol.,319
+,Chicken,235
+,Rice,412
+Daily Totals
+,Calories,2944
+,Fat,98 g
+,Fiber,16 g
+,Carbs,320 g
+,Sodium,4930 mg
+,Protein,146 g
+,Water,0 ml
+
+food_log_20120213
+Meal,Food,Calories
+Anytime
+,Fiber Capsules,10
+,Protein Plus Bar, Chocolate Crisp,290
+,Milk,104
+,100% Whey Protein Fuel,130
+,Macaroni and Cheese with Berkshire Bacon,610
+Breakfast
+,Fiber One,118
+,Milk,165
+Lunch
+,Tuna,313
+,Bread, Roll,636
+,Chips,740
+Afternoon Snack
+,Coffee,4
+Dinner
+,Tomato Soup,400
+,Cheese,267
+Daily Totals
+,Calories,3787
+,Fat,122 g
+,Fiber,71 g
+,Carbs,541 g
+,Sodium,6818 mg
+,Protein,161 g
+,Water,0 ml
+
+food_log_20120214
+Meal,Food,Calories
+Breakfast
+,Protein Plus Bar, Chocolate Crisp,290
+,Protein Plus Bar, Chocolate Crisp,290
+Lunch
+,Pear,96
+,Salad,123
+,Prawns,86
+,Chocolate, Milk,570
+,Cream, Heavy,51
+,Strawberry, Raw,87
+Dinner
+,Pasta, Boiled,903
+,Clam, Cooked,141
+,Pineapple,110
+,Cream, Light,192
+Daily Totals
+,Calories,2939
+,Fat,114 g
+,Fiber,28 g
+,Carbs,352 g
+,Sodium,1970 mg
+,Protein,141 g
+,Water,0 ml
+
+food_log_20120215
+Meal,Food,Calories
+Breakfast
+,Protein Plus Bar, Chocolate Crisp,290
+,Fruit and Yogurt Parfait,440
+Lunch
+,Meatloaf,724
+,Rice,206
+,Broccoli,56
+Afternoon Snack
+,Protein Plus Bar, Chocolate Peanut Butter,300
+Dinner
+,Bento Box,1000
+Daily Totals
+,Calories,3016
+,Fat,61 g
+,Fiber,62 g
+,Carbs,256 g
+,Sodium,3041 mg
+,Protein,133 g
+,Water,0 ml
+
+food_log_20120216
+Meal,Food,Calories
+Breakfast
+,Protein Plus Bar, Chocolate Crisp,290
+Morning Snack
+,Yogurt Parfait,670
+Lunch
+,Pizza,826
+Afternoon Snack
+,Protein Plus Bar, Chocolate Crisp,290
+Dinner
+,Chicken Wrapper,461
+,Yogurt Parfait,335
+,Beer, Alc. 5 % By Vol.,306
+Daily Totals
+,Calories,3178
+,Fat,77 g
+,Fiber,30 g
+,Carbs,381 g
+,Sodium,4055 mg
+,Protein,207 g
+,Water,0 ml
+
+food_log_20120217
+Meal,Food,Calories
+Breakfast
+,Mixed Cereal, Dry,288
+,Skim Milk,85
+,Yoghurt & Apricot,233
+Lunch
+,Sea Bass, Cooked,250
+,Spinach,90
+,Chicken,235
+,Chocolate Cake,973
+Dinner
+,Apple Walnut Salad for Bar,130
+,Gnocchi, Raw (potato Dumpling),582
+,Pork,145
+,Sorbet,62
+,Apple Cider,186
+Daily Totals
+,Calories,3259
+,Fat,112 g
+,Fiber,40 g
+,Carbs,421 g
+,Sodium,3407 mg
+,Protein,136 g
+,Water,0 ml
+
+food_log_20120218
+Meal,Food,Calories
+Breakfast
+,Yoghurt & Apricot,233
+Lunch
+,Burger,740
+,French Fries,427
+,Coffee,4
+,Coffee,4
+Dinner
+,Goat, Roasted,486
+,Crab Cake Entree,318
+,7 Mixed Vegetables,112
+,Peppermint Ice Cream,450
+,Wine, Red,237
+Daily Totals
+,Calories,3011
+,Fat,137 g
+,Fiber,18 g
+,Carbs,197 g
+,Sodium,3921 mg
+,Protein,183 g
+,Water,0 ml
+
+food_log_20120219
+Meal,Food,Calories
+Breakfast
+,Plain Yogurt,140
+Morning Snack
+,Pizza,777
+,Coffee,4
+Lunch
+,Eggs Benedict,590
+,Shrimp,89
+,Orange Juice,206
+Dinner
+,Asian Noodle Soup,856
+,Wine, White, Dry,168
+,Chocolate,74
+,Sliced Strawberries,150
+Daily Totals
+,Calories,3054
+,Fat,94 g
+,Fiber,18 g
+,Carbs,356 g
+,Sodium,8706 mg
+,Protein,141 g
+,Water,0 ml
+
+food_log_20120220
+Meal,Food,Calories
+Breakfast
+,cereal,260
+,Blueberry Yogurt,173
+,Milk,104
+Lunch
+,Plain Crepe - One a la carte,459
+,Potato,100
+,Strawberry Blueberry Fruit & Yogurt Crepe - Two,348
+Afternoon Snack
+,Hot Chocolate,207
+,Chocolate Assortments,55
+Dinner
+,Chicken Noodle Soup Mix,916
+Daily Totals
+,Calories,2622
+,Fat,84 g
+,Fiber,25 g
+,Carbs,379 g
+,Sodium,11028 mg
+,Protein,84 g
+,Water,0 ml
+
+food_log_20120221
+Meal,Food,Calories
+Anytime
+,Fiber Capsules,10
+,1% Low Fat Milk,95
+,100% Whey Protein Fuel,130
+Breakfast
+,Protein Plus Bar, Chocolate Crisp,290
+Morning Snack
+,Yogurt Parfait,335
+,Coffee,4
+Lunch
+,Taco,1107
+,Beans,95
+,Chicken,235
+Afternoon Snack
+,Coffee,4
+Dinner
+,Chili,637
+,Brown Rice,313
+,Sugar Snap Peas,83
+Daily Totals
+,Calories,3338
+,Fat,128 g
+,Fiber,58 g
+,Carbs,351 g
+,Sodium,6080 mg
+,Protein,238 g
+,Water,0 ml
+
+food_log_20120222
+Meal,Food,Calories
+Anytime
+,Milk,104
+,100% Whey Protein Fuel,130
+Breakfast
+,Cereal, Honey Clusters,192
+,Skim Milk,85
+Morning Snack
+,Coffee,4
+Lunch
+,Rice,206
+,Sausage,150
+,Chicken,235
+,Vegetables Mixed,35
+Afternoon Snack
+,Protein Plus Bar, Chocolate Peanut Butter,300
+Dinner
+,Lamb, Stew Meat,596
+,Flat Bread Pita: Classic Veggie,480
+,Salad,246
+,Potato,100
+Daily Totals
+,Calories,2863
+,Fat,124 g
+,Fiber,44 g
+,Carbs,283 g
+,Sodium,3619 mg
+,Protein,173 g
+,Water,0 ml
+
+food_log_20120223
+Meal,Food,Calories
+Anytime
+,100% Whey Protein Fuel,130
+,Skim Milk,70
+,Zone Perfect Bar (dark chocolate, almond),190
+,Zone Perfect Bar (dark chocolate, almond),190
+,Fiber Capsules,10
+Breakfast
+,Skim Milk,105
+,cereal,130
+Morning Snack
+,Coffee,4
+Lunch
+,Salad,246
+,Chicken,470
+,Salad Dressing,60
+Afternoon Snack
+,Hot Tea,46
+Dinner
+,Spaghetti Pasta, Whole Wheat, Dry,278
+,Beef, Minced,398
+,Tomato, Crushed,64
+,Zone Perfect Bar (dark chocolate, almond),190
+Daily Totals
+,Calories,2581
+,Fat,79 g
+,Fiber,41 g
+,Carbs,284 g
+,Sodium,2733 mg
+,Protein,187 g
+,Water,0 ml
+
+food_log_20120224
+Meal,Food,Calories
+Anytime
+,Fiber Capsules,10
+,Zone Perfect Bar (dark chocolate, almond),380
+Breakfast
+,Skim Milk,105
+,cereal,130
+Morning Snack
+,Coffee,4
+Lunch
+,Salad,246
+,Chicken,470
+,Rice,206
+Afternoon Snack
+,Coffee,4
+Dinner
+,Rice,412
+,Chicken,470
+,Green Pepper, Sweet (bell),39
+Daily Totals
+,Calories,2476
+,Fat,64 g
+,Fiber,42 g
+,Carbs,329 g
+,Sodium,4586 mg
+,Protein,149 g
+,Water,0 ml
+
+food_log_20120225
+Meal,Food,Calories
+Anytime
+,Zone Perfect Bar (dark chocolate, almond),190
+Breakfast
+,Skim Milk,85
+,cereal,130
+,Hot Tea,46
+Morning Snack
+,Skim Milk,70
+,100% Whey Protein Fuel,130
+Lunch
+,Kluski Egg Noodles,220
+,Seafood Gumbo-Bowl,470
+,Lychee,90
+Dinner
+,Brown Rice,340
+,Beef Stew,230
+,Cut Corn,100
+,Snap Bean, Frozen, No Added Salt (green Bean),60
+,Zone Perfect Bar (dark chocolate, almond),190
+Daily Totals
+,Calories,2351
+,Fat,50 g
+,Fiber,40 g
+,Carbs,287 g
+,Sodium,4070 mg
+,Protein,91 g
+,Water,0 ml
+
+food_log_20120226
+Meal,Food,Calories
+Anytime
+,Zone Perfect Bar (dark chocolate, almond),190
+,Raspberries,82
+,100% Whey Protein Fuel,130
+,Milk,104
+,Milk,156
+,Honey Bunches Of Oats,236
+Breakfast
+,Skim Milk,85
+,cereal,130
+Lunch
+,Broccoli,42
+,Sausage,300
+,Apple,80
+,Bacon,79
+Afternoon Snack
+,Zone Perfect Bar (dark chocolate, almond),190
+,100% Whey Protein Fuel,130
+,Milk,104
+Dinner
+,Peas, Petite, Frozen,161
+,Chili Con Carne,504
+,Basmati Rice, Brown, Dry,233
+Daily Totals
+,Calories,2936
+,Fat,89 g
+,Fiber,46 g
+,Carbs,345 g
+,Sodium,4900 mg
+,Protein,193 g
+,Water,0 ml
+
+food_log_20120227
+Meal,Food,Calories
+Breakfast
+,Scrambled Eggs,314
+,Turkey Sausage,191
+,Whole Potatoes,80
+Morning Snack
+,Coffee,4
+Lunch
+,Beef Stew,230
+,Pasta, Boiled,387
+,Fish Filet,470
+Afternoon Snack
+,Coffee,4
+,Hot Tea,46
+Dinner
+,Pasta, Boiled,516
+,Italian Sausage,390
+,Broccoli,56
+Daily Totals
+,Calories,2688
+,Fat,127 g
+,Fiber,31 g
+,Carbs,245 g
+,Sodium,5551 mg
+,Protein,134 g
+,Water,0 ml
+
+food_log_20120228
+Meal,Food,Calories
+Anytime
+,Milk,104
+,100% Whey Protein Fuel,130
+Breakfast
+,Milk,156
+,Honey Bunches Of Oats,275
+Lunch
+,Pasta, Boiled,516
+,Mixed Vegetables,108
+Afternoon Snack
+,Protein Plus Bar, Chocolate Peanut Butter,600
+Dinner
+,Chicken,470
+,Rice,412
+Daily Totals
+,Calories,2771
+,Fat,72 g
+,Fiber,26 g
+,Carbs,376 g
+,Sodium,4234 mg
+,Protein,169 g
+,Water,0 ml
+
+food_log_20120229
+Meal,Food,Calories
+Anytime
+,Milk,104
+,100% Whey Protein Fuel,130
+,Fiber Capsules,10
+,Zone Perfect Bar (dark chocolate, almond),190
+Breakfast
+,Milk,130
+,Honey Bunches Of Oats,197
+Morning Snack
+,Fruit and Yogurt Parfait,220
+,Coffee,5
+Lunch
+,Chicken,470
+,Salad,246
+Afternoon Snack
+,Hot Tea,46
+Dinner
+,Fruit and Yogurt Parfait,220
+,Tomato Soup,531
+,Bread, White,374
+Daily Totals
+,Calories,2873
+,Fat,66 g
+,Fiber,86 g
+,Carbs,439 g
+,Sodium,6133 mg
+,Protein,175 g
+,Water,0 ml
+
+food_log_20120301
+Meal,Food,Calories
+Anytime
+,Milk,104
+,100% Whey Protein Fuel,130
+,Zone Perfect Bar (dark chocolate, almond),190
+Breakfast
+,Milk,130
+,Honey Bunches Of Oats,197
+Lunch
+,Meatloaf,724
+,Potato, Mashed,188
+,Creamed Spinach,140
+Dinner
+,Pasta, Raw,353
+,Meatballs, Turkey,340
+Daily Totals
+,Calories,2496
+,Fat,93 g
+,Fiber,25 g
+,Carbs,264 g
+,Sodium,4650 mg
+,Protein,148 g
+,Water,0 ml
+
+food_log_20120302
+Meal,Food,Calories
+Breakfast
+,Milk,130
+,Honey Bunches Of Oats,197
+Lunch
+,Rice,206
+,Peas,25
+,Chicken,470
+,Lentils,70
+Dinner
+,Bento Box,1000
+Daily Totals
+,Calories,2098
+,Fat,27 g
+,Fiber,19 g
+,Carbs,154 g
+,Sodium,2067 mg
+,Protein,70 g
+,Water,0 ml
+
+food_log_20120303
+Meal,Food,Calories
+Breakfast
+,Milk,184
+,Honey Bunches Of Oats,197
+Lunch
+,Whole wheat spaghetti,225
+,Beef, Minced,498
+,Tomato, Raw,14
+,Onion,20
+Afternoon Snack
+,Milk,120
+,100% Whey Protein Fuel,130
+,Protein Plus Bar, Cookies & Cream,300
+Dinner
+,Sushi Rolls,240
+,Prime Fillet Pink Salmon Steaks - Teriyaki,283
+,Rice,206
+,Miso,547
+Daily Totals
+,Calories,2964
+,Fat,92 g
+,Fiber,34 g
+,Carbs,327 g
+,Sodium,13175 mg
+,Protein,215 g
+,Water,0 ml
+
+food_log_20120304
+Meal,Food,Calories
+Breakfast
+,Milk,156
+,Golean,170
+,Hot Tea,46
+Lunch
+,Swedish Meatballs,525
+,Mashed Potato,340
+,Salmon,176
+,Coffee,12
+Dinner
+,Beef, Minced,498
+,Mixed Vegetables,216
+,Grapes,73
+,Rice,206
+Daily Totals
+,Calories,2418
+,Fat,107 g
+,Fiber,29 g
+,Carbs,263 g
+,Sodium,3960 mg
+,Protein,135 g
+,Water,0 ml
+

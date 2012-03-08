@@ -1,0 +1,107 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container',
+			zoomType: 'xy'
+		},
+		title: {
+			text: 'Body'
+		},
+		subtitle: {
+			text: '....'
+		},
+		xAxis: [{
+			type: 'datetime',
+				dateTimeLabelFormats: { // don't display the dummy year
+					month: '%e. %b',
+					year: '%b'
+				}
+		}],
+		yAxis: [{ // Primary yAxis
+			labels: {
+				formatter: function() {
+					return this.value +'';
+				},
+				style: {
+					color: '#89A54E'
+				}
+			},
+			title: {
+				text: '',
+				style: {
+					color: '#89A54E'
+				}
+			},
+			opposite: false
+
+		}],
+		tooltip: {
+			formatter: function() {
+				var unit = {
+					'Weight': 'kg',
+					'Fat': '%',
+					'Water': '%',
+					'Muscle': 'kg'
+				}[this.series.name];
+
+				return ''+
+					new Date(this.x).toDateString() +': '+ this.y +' '+ unit;
+			}
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'left',
+			x: 120,
+			verticalAlign: 'top',
+			y: 80,
+			floating: true,
+			backgroundColor: '#FFFFFF'
+		},
+		series: [{
+			name: 'Weight',
+			type: 'spline',
+			data: [
+					<%= @data1 %>
+					]
+		}, {
+			name: 'Fat',
+			type: 'spline',
+			data: [
+					<%= @data2 %>
+					]
+		}, {
+			name: 'Water',
+			type: 'spline',
+			data: [
+					<%= @data3 %>
+					]
+		}, {
+			name: 'Muscle',
+			type: 'spline',
+			data: [
+					<%= @data4 %>
+					]
+		}]
+	});
+});
+
+		</script>
+	</head>
+	<body>
+<script type="text/javascript" src="../../js/highcharts.js"></script>
+<script type="text/javascript" src="../../js/modules/exporting.js"></script>
+
+<div id="container" style="width: 800px; height: 800px; margin: 0 auto"></div>
+
+	</body>
+</html>

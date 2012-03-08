@@ -1,0 +1,129 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container',
+			zoomType: 'xy'
+		},
+		title: {
+			text: 'Blood pressure'
+		},
+		subtitle: {
+			text: 'From Withings'
+		},
+		xAxis: [{
+			type: 'datetime',
+				dateTimeLabelFormats: { // don't display the dummy year
+					month: '%e. %b',
+					year: '%b'
+				}
+		}],
+		yAxis: [{ // Primary yAxis
+			labels: {
+				formatter: function() {
+					return this.value +' mmHg';
+				},
+				style: {
+					color: '#89A54E'
+				}
+			},
+			title: {
+				text: '%',
+				style: {
+					color: '#89A54E'
+				}
+			},
+			opposite: false
+
+		}, { // Tertiary yAxis
+			gridLineWidth: 0,
+			title: {
+				text: 'Pulse',
+				style: {
+					color: '#AA4643'
+				}
+			},
+			labels: {
+				formatter: function() {
+					return this.value +' BPM';
+				},
+				style: {
+					color: '#AA4643'
+				}
+			},
+			opposite: true
+		}],
+		tooltip: {
+			formatter: function() {
+				var unit = {
+					'Systel': 'mmHg',
+					'Diastol': 'mmHg',
+					'Pulse': 'BPM'
+				}[this.series.name];
+
+				return ''+
+					new Date(this.x).toDateString() +': '+ this.y +' '+ unit;
+			}
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'left',
+			x: 120,
+			verticalAlign: 'top',
+			y: 80,
+			floating: true,
+			backgroundColor: '#FFFFFF'
+		},
+		series: [{
+			name: 'Systel',
+			color: '#4572A7',
+			type: 'spline',
+			yAxis: 1,
+			data: [
+			
+			<%= @data1 %>
+						]
+
+		}, {
+			name: 'Diastol',
+			type: 'spline',
+			color: '#AA4643',
+			yAxis: 1,
+			data: [
+					<%= @data2 %>
+						],
+			marker: {
+				enabled: false
+			},
+			dashStyle: 'shortdot'
+
+		}, {
+			name: 'Pulse',
+			color: '#89A54E',
+			type: 'spline',
+			data: [
+			<%= @data3 %>
+						]
+		}]
+	});
+});
+
+		</script>
+	</head>
+	<body>
+<script type="text/javascript" src="../../js/highcharts.js"></script>
+<script type="text/javascript" src="../../js/modules/exporting.js"></script>
+
+<div id="container" style="width: 800px; height: 800px; margin: 0 auto"></div>
+
+	</body>
+</html>
