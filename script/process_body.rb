@@ -1,4 +1,5 @@
 require 'date'
+require '/Users/benjaminblack/Dropbox/Dev/bodytics/script/pipes.rb'
 
 class BodyEntry
   attr_accessor :weight
@@ -12,47 +13,39 @@ class BodyEntry
   
   def initialize(date)
     @date = date
-    @weight = 0
-    @fat = 0
-    @water = 0
-    @muscle = 0
-    @muscle_no = 0
-    @energy = 0
-    @fat_no = 0
-    @bone = 0
   end
 end
 
 def parse_body()
+  schema = {
+    "weight" => 1,
+    "fat" => 2,
+    "water" => 3,
+    "muscle" => 4,
+    "muscle_no" => 5,
+    "energy" => 6,
+    "fat_no" => 7,
+    "bone" => 8
+  }
+  
   entries = Hash.new
 
-  File.open("script/body - Sheet1.csv", "r") do |f|
+  File.open("script/body.csv", "r") do |f|
     while (line = f.gets)
       puts "#{line}"
-      columns = line.split(",")
-      
-      # ignore top line and any entries with just a date
-      if(columns.size > 5 && columns[0] != "Date")
-        date = DateTime.parse(columns[0]).to_date
-        entries[date] = BodyEntry.new(date)
-        entries[date].weight = columns[1]
-        entries[date].fat = columns[2]
-        entries[date].water = columns[3]
-        entries[date].muscle = columns[4]
-        entries[date].muscle_no = columns[5]
-        entries[date].energy = columns[6]
-        entries[date].fat_no = columns[7]
-        entries[date].bone = columns[8]
+
+      # ignore top line
+      if(line.chop() != "Date")
+        Pipes::parse_data(entries, f, schema, "BodyEntry")
       end
     end
   end
   
-  puts "Date\t\tWeigth\t% Fat\t% Water\tMuscle\tMuslce #\tEnergy\tFat #\tBone"
-  entries.sort.each do|date, entry|
-    puts "#{date}\t#{entry.weight}\t#{entry.fat}\t#{entry.water}\t#{entry.muscle}"
-  end
+  Pipes::print_entries(entries)
   
   entries
 end
 
-parse_body()
+if __FILE__ == $PROGRAM_NAME
+  parse_body()
+end

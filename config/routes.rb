@@ -1,6 +1,4 @@
 Bodytics::Application.routes.draw do
-  get "welcome/index"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -50,11 +48,16 @@ Bodytics::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'welcome#blood'
+  root :to => 'welcome#fitbit'
   
-  get 'body' => 'welcome#body'
-  get 'blood' => 'welcome#blood'
+  get 'keywords' => 'welcome#keywords'
+  get 'fitbit' => 'welcome#fitbit'
+  get 'magnesium' => 'welcome#magnesium'
 
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#failure'
+  match '/fitbit_callback', :to => 'sessions#fitbit_callback'
+  
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

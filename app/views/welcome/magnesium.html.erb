@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+			<%= @data %>
+        ]);
+
+        var options = {
+          title: 'Magnesium vs sleep efficiency',
+          hAxis: {title: 'Sleep efficiency'},
+          vAxis: {title: 'Magnesium', minValue: -0.5, maxValue: 1.5},
+          bubble: {textStyle: {fontSize: 11}},
+        };
+
+        var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 1000px; height: 600px;"></div>
+  </body>
+</html>

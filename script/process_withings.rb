@@ -20,7 +20,7 @@ end
 def parse_withings()
   entries = Hash.new
 
-  File.open("script/Withings_Blood_Pressure_Benjamin_Black_20120303.csv", "r") do |f|
+  File.open("script/blood.csv", "r") do |f|
   
     while (line = f.gets)
       puts "#{line}"

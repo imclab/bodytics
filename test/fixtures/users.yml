@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  provider: MyString
+  uid: MyString
+  first_name: MyString
+  last_name: MyString
+  fitbit_uid: MyString
+  fitbit_token: MyString
+  fitbit_secret: MyString
+
+two:
+  provider: MyString
+  uid: MyString
+  first_name: MyString
+  last_name: MyString
+  fitbit_uid: MyString
+  fitbit_token: MyString
+  fitbit_secret: MyString

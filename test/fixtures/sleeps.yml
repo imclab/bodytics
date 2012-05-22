@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2012-04-21 21:22:59
+  f_id: 1
+  efficiency: 1
+  time_in_bed: 1
+  start_time: 2012-04-21 21:22:59
+  awakenings: 1
+  minutes_after_wakeup: 1
+  minutes_asleep: 1
+  minutes_awake: 1
+  minutes_to_fall_asleep: 1
+
+two:
+  date: 2012-04-21 21:22:59
+  f_id: 1
+  efficiency: 1
+  time_in_bed: 1
+  start_time: 2012-04-21 21:22:59
+  awakenings: 1
+  minutes_after_wakeup: 1
+  minutes_asleep: 1
+  minutes_awake: 1
+  minutes_to_fall_asleep: 1
