@@ -97,6 +97,8 @@ class WelcomeController < ApplicationController
             end
 
             puts "now #{now} to then #{last} is days since #{days_since} or period #{period}"
+        else 
+            period = "max"
         end
 
         # loop over each resource to get time serious and construct the Sleep data
@@ -108,7 +110,7 @@ class WelcomeController < ApplicationController
                     value = data_items["value"]
                     puts "downloaded #{date} and #{value}"
 
-                    if date <= last || date > now
+                    if last != nil && (date <= last || date > now)
                         puts "ignoring as before now or less than now"
                         next
                     end
