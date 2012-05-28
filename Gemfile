@@ -39,3 +39,4 @@ gem 'jquery-rails'
 
 gem 'omniauth-facebook'
 gem 'fitgem'
+gem 'activerecord-postgresql-adapter'
