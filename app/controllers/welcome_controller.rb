@@ -23,7 +23,7 @@ class WelcomeController < ApplicationController
             from = last_food.date.to_date+1
             to = last_sleep.date.to_date
         else
-            from = first_sleep = Sleep.where(:user_id => user.id).first.to_date
+            from = first_sleep = Sleep.where(:user_id => user.id).first.date.to_date
             to = last_sleep.date.to_date
         end
 
