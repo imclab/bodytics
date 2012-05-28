@@ -39,4 +39,7 @@ gem 'jquery-rails'
 
 gem 'omniauth-facebook'
 gem 'fitgem'
+
+# below two are added for heroku
 gem 'activerecord-postgresql-adapter'
+gem 'therubyracer'
