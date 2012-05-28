@@ -1,0 +1,9 @@
+development:
+    oauth:
+        consumer_key: 064b1701e1a34465a572ec242b66aa9e
+        consumer_secret: a7382e007159489d89b8347aba82e536
+        
+production:
+    oauth:
+        consumer_key: e8ca10cfb7184af0a6d04e5e41536b06
+        consumer_secret: d82f9c41fb39413aaffed9e2fc9eaea1
