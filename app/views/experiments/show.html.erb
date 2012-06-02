@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>String:</b>
+  <%= @experiment.title %>
+</p>
+<%= link_to 'Edit', edit_experiment_path(@experiment) %>
+
+<table>
+  <tr>
+	<th>Label</th>
+    <th>Keywords</th>
+	<th>Not</th>
+    <th>Breakfast</th>
+    <th>Morning</th>
+    <th>Lunch</th>
+    <th>Afternoon</th>
+    <th>Dinner</th>
+    <th>Anytime</th>
+    <th>From</th>
+    <th>To</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @experiment.conditions.each do |condition| %>
+  <tr>
+	<td><%= condition.label %></td>
+    <td><%= condition.keywords %></td>
+    <td><%= condition.not %></td>
+    <td><%= condition.breakfast %></td>
+    <td><%= condition.morning %></td>
+    <td><%= condition.lunch %></td>
+    <td><%= condition.afternoon %></td>
+    <td><%= condition.dinner %></td>
+    <td><%= condition.anytime %></td>
+    <td><%= condition.from %></td>
+    <td><%= condition.to %></td>
+    <td><%= link_to 'Edit', edit_condition_path(condition) %></td>
+    <td><%= link_to 'Destroy', condition, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New Condition', new_condition_path(:experiment_id => @experiment.id) %>
+
+<br />
+
+
+
+<%= link_to 'Back', experiments_path %>

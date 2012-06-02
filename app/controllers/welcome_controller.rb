@@ -12,6 +12,8 @@ class WelcomeController < ApplicationController
             collect_sleep(client, @user)
             collect_food(client, @user)
         end
+        
+        @experiments = Experiment.all
     end
 
     def collect_food(client, user)
@@ -139,48 +141,98 @@ class WelcomeController < ApplicationController
         end
     end
     
-    def magnesium
+    def experiment
         @user = User.find_by_id(session[:user_id])
+        
+        experiment = Experiment.find_by_id(params[:id])
 
-        days = @user.foods.group_by {|food| food.date }
-        sleeps = @user.sleeps.group_by {|sleep| sleep.date }
+        days = @user.foods.group_by {|food| food.date.to_date }
+        sleeps = @user.sleeps.group_by {|sleep| sleep.date.to_date }
 
-        data_true = Hash.new
-        data_false = Hash.new
+        # keywords[keyword][sleep_efficiency] => count
 
+        keywords = Hash.new
+        experiment.conditions.each do |condition|
+           keywords[condition.label] = Hash.new 
+        end
+        
         days.each do |date, foods|
-            condition = false
-            foods.each do |food|
-                if food.name == "Magnesium Oxide" then
-                    condition = true
-                    break
-                end
-            end
-
-            if sleeps[date] then
-                value = sleeps[date][0].efficiency
-                if condition
-                    if !data_true.has_key? value
-                       data_true[value] = 1
-                    else
-                        data_true[value] += 1
+            experiment.conditions.each do |condition|
+                if condition.from == nil
+                    #to
+                    if condition.to < date
+                        next
+                    end
+                elsif condition.to == nil
+                    #from
+                    if condition.from > date
+                        next
                     end
                 else
-                    if !data_false.has_key? value
-                       data_false[value] = 1
-                    else
-                        data_false[value] += 1
+                    #range
+                    if condition.to < date || condition.from > date
+                        next
                     end
                 end
+                
+                puts "number one"
+                
+                found = false
+                foods.each do |food|
+                    case food.meal_type_id
+                    when 1
+                        if !condition.breakfast
+                            next
+                        end
+                    when 2
+                        if !condition.morning
+                            next
+                        end
+                    when 3
+                        if !condition.lunch
+                            next
+                        end
+                    when 4
+                        if !condition.afternoon
+                            next
+                        end
+                    when 5
+                        if !condition.dinner
+                            next
+                        end
+                    when 7
+                        if !condition.anytime
+                            next
+                        end
+                    end
+                    
+                    puts "hello"
+                    
+                    if food.name.match(/#{condition.keywords}/mi) != nil
+                        found = true
+                        break
+                    end
+                end
+                
+                found = (found == !condition.not)
+                
+                if found
+                    
+                    value = sleeps[date][0].efficiency
+                    
+                    puts "found #{condition.label} #{value}"
+                    if keywords[condition.label].has_key? value
+                        keywords[condition.label][value] += 1
+                    else
+                        keywords[condition.label][value] = 1
+                    end
+                end
+            
             end
         end
         
-        
-        @data = "['ID', 'Score', 'Magnesium', 'Magnesium', 'Count'],"
-        @data << data_true.collect{ |value, count| "['#{value}', #{value}, 1, 'Magnesium', #{count}]" }.join(",\n")
-        @data << ",\n"
-        @data << data_false.collect{ |value, count| "['#{value}', #{value}, 0, 'No Magnesium', #{count}]" }.join(",\n")
-        
+        @data = "['ID', 'Score', 'Group', 'Group', 'Count'],"
+        @data << keywords.keys.each_with_index.collect{ |keyword,i| keywords[keyword].collect{ |value, count| "['#{value}', #{value}, #{i}, '#{keyword}', #{count}]"}.join(",\n")}.join(",\n")
     end
 
     def keywords

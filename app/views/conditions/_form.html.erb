@@ -1,0 +1,130 @@
+<%= javascript_include_tag 'datepicker/js/datepicker.js' %>
+<%= stylesheet_link_tag 'datepicker/css/datepicker.css' %>
+
+<%= form_for(@condition) do |f| %>
+	<%= f.hidden_field :experiment_id %>
+	<%= f.hidden_field :from %>
+	<%= f.hidden_field :to %>
+
+  <% if @condition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@condition.errors.count, "error") %> prohibited this condition from being saved:</h2>
+
+      <ul>
+      <% @condition.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :label %><br />
+    <%= f.text_field :label %>
+  </div>
+  <div class="field">
+    <%= f.label :keywords %><br />
+    <%= f.text_field :keywords %>
+  </div>
+  <div class="field">
+    <%= f.label :not %><br />
+    <%= f.check_box :not %>
+  </div>
+  <div class="field">
+    <%= f.label :breakfast %><br />
+    <%= f.check_box :breakfast %>
+  </div>
+  <div class="field">
+    <%= f.label :morning %><br />
+    <%= f.check_box :morning %>
+  </div>
+  <div class="bullet">
+    <%= f.label :lunch %><br />
+    <%= f.check_box :lunch %>
+  </div>
+  <div class="field">
+    <%= f.label :afternoon %><br />
+    <%= f.check_box :afternoon %>
+  </div>
+  <div class="field">
+    <%= f.label :dinner %><br />
+    <%= f.check_box :dinner %>
+  </div>
+  <div class="field">
+    <%= f.label :anytime %><br />
+    <%= f.check_box :anytime %>
+  </div>
+
+  <div class="field">
+    Days:<br />
+    <% [ 'to', 'from', 'between' ].each do |day_type| %>
+      <br><%= radio_button_tag 'day_type', day_type, @day_type == day_type %>
+      <%= label_tag "day_type_#{day_type}", day_type.humanize %>
+    <% end %>
+    <p id="date"></p>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+<script type="text/javascript">
+var options = {	
+	flat: true,
+	starts: 1,
+		onChange: function(formated, dates) {
+			var day_type = $('form input[type=radio]:checked').val()
+			console.log(day_type)
+			
+			if(day_type == 'from') {
+				$('#condition_from').val(formated)
+				$('#condition_to').val("")
+			} else if(day_type == 'to') {
+				$('#condition_from').val("")
+				$('#condition_to').val(formated)
+			} else {
+				$('#condition_from').val(formated[0])
+				$('#condition_to').val(formated[1])
+			}
+		}
+};
+
+function calander_setup(orginal_to_date, orginal_from_date) {
+	var selected = $('form input[type=radio]:checked').val()
+	console.log("calander setup:"+selected)
+	
+	
+	if(selected == 'from') {
+        options.mode = 'single'
+        options.calendars = 1
+		options.date = orginal_from_date
+		options.current = orginal_from_date
+	} else if(selected == 'to') {
+		options.mode = 'single'
+        options.calendars = 1
+		options.date = orginal_to_date
+		options.current = orginal_to_date
+	} else {
+        options.mode = 'range'
+        options.calendars = 2
+		options.date = [orginal_from_date, orginal_to_date]
+		options.current = orginal_to_date
+	}
+	
+	$('#date').empty()
+	$('#date').DatePicker(options);
+}
+
+
+$('input[name=day_type]').click(function() {
+	calander_setup($('#condition_to').val(), $('#condition_from').val());
+});
+
+calander_setup($('#condition_to').val(), $('#condition_from').val())
+
+</script>
+	
+	
+<% end %>

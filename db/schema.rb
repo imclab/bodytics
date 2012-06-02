@@ -11,16 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422031151) do
+ActiveRecord::Schema.define(:version => 20120531022112) do
+
+  create_table "conditions", :force => true do |t|
+    t.integer  "experiment_id"
+    t.string   "keywords"
+    t.boolean  "not"
+    t.boolean  "breakfast"
+    t.boolean  "morning"
+    t.boolean  "lunch"
+    t.boolean  "afternoon"
+    t.boolean  "dinner"
+    t.boolean  "anytime"
+    t.date     "from"
+    t.date     "to"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "label"
+  end
+
+  create_table "experiments", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "foods", :force => true do |t|
     t.datetime "date"
     t.integer  "f_id"
     t.integer  "meal_type_id"
     t.string   "name"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.integer  "user_id",      :default => 3
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "user_id"
   end
 
   create_table "sleeps", :force => true do |t|
@@ -34,9 +57,9 @@ ActiveRecord::Schema.define(:version => 20120422031151) do
     t.integer  "minutes_asleep"
     t.integer  "minutes_awake"
     t.integer  "minutes_to_fall_asleep"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.integer  "user_id",                :default => 3
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

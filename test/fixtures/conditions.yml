@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  experiment_id: 1
+  title: MyString
+  keywords: MyString
+  breakfast: false
+  morning: false
+  lunch: false
+  afternoon: false
+  dinner: false
+  anytime: false
+  from: 2012-05-28
+  to: 2012-05-28
+
+two:
+  experiment_id: 1
+  title: MyString
+  keywords: MyString
+  breakfast: false
+  morning: false
+  lunch: false
+  afternoon: false
+  dinner: false
+  anytime: false
+  from: 2012-05-28
+  to: 2012-05-28

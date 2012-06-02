@@ -1,4 +1,10 @@
 <p>Hello <%= @user.first_name %></p>
 
-<a href="/keywords">Keywords</a>
-<a href="/magnesium">magnesium</a>
+<table>
+
+<% @experiments.each do |experiment| %>
+  <tr>
+    <td><%= link_to experiment.title, {:action => "experiment", :id => experiment.id} %></td>
+  </tr>
+<% end %>
+</table>
