@@ -1,0 +1,14 @@
+<p>Hello <%= @user.first_name %></p>
+
+<table>
+
+<% @experiments.each do |experiment| %>
+  <tr>
+    <td><%= link_to experiment.title, {:action => "experiment", :id => experiment.id} %></td>
+	<td><%= link_to 'Edit', experiment %></td>
+    <td><%= link_to 'Destroy', experiment, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New Experiment', new_experiment_path %>

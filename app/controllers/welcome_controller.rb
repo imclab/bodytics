@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-    def fitbit
+    def index
         @user = User.find_by_id(session[:user_id])
 
         if @user == nil || @user.fitbit_uid == nil

@@ -51,9 +51,9 @@ Bodytics::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'welcome#fitbit'
+  root :to => 'welcome#index'
 
-  get 'fitbit' => 'welcome#fitbit'
+  get 'fitbit' => 'welcome#index'
 
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure'
