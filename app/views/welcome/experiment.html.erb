@@ -12,16 +12,75 @@
         var options = {
           title: 'Magnesium vs sleep efficiency',
           hAxis: {title: 'Sleep efficiency'},
-          vAxis: {title: 'Magnesium', minValue: -0.5, maxValue: 1.5},
+          vAxis: {title: 'Magnesium', minValue: -0.5, maxValue: 3.5},
           bubble: {textStyle: {fontSize: 11}},
         };
 
         var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
         chart.draw(data, options);
+
+
+
+
+		var data2 = google.visualization.arrayToDataTable([
+          <%= @pmf %>
+        ]);
+
+        var options2 = {
+          title: 'Probability Mass Function',
+          hAxis: {title: 'Sleep efficiency'}
+        };
+
+        var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div_pmf'));
+        chart2.draw(data2, options2);
+
+
+
+		var data3 = google.visualization.arrayToDataTable([
+		  <%= @edf %>
+		]);
+
+		var options3 = {
+		  title: 'Empirical Distribution Function'
+		};
+
+	    var chart3 = new google.visualization.LineChart(document.getElementById('chart_div_edf'));
+		chart3.draw(data3, options3);
+		
+		
+		
+		var data4 = google.visualization.arrayToDataTable([
+		  <%= @cdf %>
+		]);
+
+		var options4 = {
+		  title: 'Continuous Distribution Function'
+		};
+
+	    var chart4 = new google.visualization.LineChart(document.getElementById('chart_div_cdf'));
+		chart4.draw(data4, options4);
       }
     </script>
   </head>
   <body>
     <div id="chart_div" style="width: 1000px; height: 600px;"></div>
+    <div id="chart_div_pmf" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div_edf" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div_cdf" style="width: 900px; height: 500px;"></div>
+
+	<h3>Averages</h3>
+	<% @stats.each do |stat| %>
+		<p><%= stat.label %><br />
+			Mean: <%= number_with_precision(stat.mean, :precision => 2) %><br />
+			Variance: <%= number_with_precision(stat.variance, :precision => 2) %><br />
+			Standard Deviation <%= number_with_precision(stat.standard_deviation, :precision => 2) %><br />
+		</p>
+	<% end %>
+
+	<h3>Null hypothesis: effect was due to chance</h3>
+	<% @significant_tests.each do |significant| %>
+		<p><%= significant.stat_1.label %> vs <%= significant.stat_2.label %> is <%= significant.result*100.0 %>%</p>
+	<% end %>
+
   </body>
 </html>
