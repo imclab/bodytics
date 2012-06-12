@@ -154,10 +154,10 @@ class WelcomeController < ApplicationController
         # keywords[keyword][sleep_efficiency] => count
         keywords = Hash.new
         experiment.conditions.each do |condition|
-           keywords[condition.label] = Hash.new 
+           keywords[condition.label] = DataSet.new 
         end
         
-        keywords["all"] = Hash.new
+        keywords["all"] = DataSet.new
         
         days.each do |date, foods|
             # ignore day when we don't have sleep score
@@ -165,94 +165,91 @@ class WelcomeController < ApplicationController
                next 
             end
             
-            # keep track of all
+            # score
             value = sleeps[date][0].efficiency
-            if keywords["all"].has_key? value
-                keywords["all"][value] += 1
-            else
-                keywords["all"][value] = 1
-            end
+            
+            # keep track of all
+            keywords["all"].data.increment(value)
+
             
             experiment.conditions.each do |condition|
+                search = true
                 if condition.from == nil
                     #to
                     if condition.to < date
-                        next
+                        search = false
                     end
                 elsif condition.to == nil
                     #from
                     if condition.from > date
-                        next
+                        search = false
                     end
                 else
                     #range
                     if condition.to < date || condition.from > date
-                        next
+                        search = false
                     end
                 end
                 
                 found = false
-                foods.each do |food|
-                    case food.meal_type_id
-                    when 1
-                        if !condition.breakfast
-                            next
+                
+                if search
+                    foods.each do |food|
+                        case food.meal_type_id
+                        when 1
+                            if !condition.breakfast
+                                next
+                            end
+                        when 2
+                            if !condition.morning
+                                next
+                            end
+                        when 3
+                            if !condition.lunch
+                                next
+                            end
+                        when 4
+                            if !condition.afternoon
+                                next
+                            end
+                        when 5
+                            if !condition.dinner
+                                next
+                            end
+                        when 7
+                            if !condition.anytime
+                                next
+                            end
                         end
-                    when 2
-                        if !condition.morning
-                            next
-                        end
-                    when 3
-                        if !condition.lunch
-                            next
-                        end
-                    when 4
-                        if !condition.afternoon
-                            next
-                        end
-                    when 5
-                        if !condition.dinner
-                            next
-                        end
-                    when 7
-                        if !condition.anytime
-                            next
-                        end
-                    end
                     
-                    if food.name.match(/#{condition.keywords}/mi) != nil
-                        found = true
-                        break
+                        if food.name.match(/#{condition.keywords}/mi) != nil
+                            found = true
+                            break
+                        end
                     end
                 end
                 
                 found = (found == !condition.not)
                 
-                if found
-                    
-                    value = sleeps[date][0].efficiency
-                    
-                    #puts "found #{condition.label} #{value}"
-                    if keywords[condition.label].has_key? value
-                        keywords[condition.label][value] += 1
-                    else
-                        keywords[condition.label][value] = 1
-                    end
+                if found && search
+                    keywords[condition.label].data.increment(value)
+                else
+                    keywords[condition.label].vs.increment(value)
                 end
-            
             end
         end
+
         
         @data = "['ID', 'Score', 'Group', 'Group', 'Count'],"
-        @data << keywords.keys.each_with_index.collect{ |keyword,i| keywords[keyword].collect{ |value, count| "['#{value}', #{value}, #{i}, '#{keyword}', #{count}]"}.join(",\n")}.join(",\n")
+        @data << keywords.keys.each_with_index.collect{ |keyword,i| keywords[keyword].data.collect{ |value, count| "['#{value}', #{value}, #{i}, '#{keyword}', #{count}]"}.join(",\n")}.join(",\n")
         
         @stats = Array.new
         
-        keywords.each do |keyword, values|
+        keywords.each do |keyword, set|
             stat = Stat.new(keyword)
             @stats << stat
             
-            values.each do |value, count|
+            set.data.each do |value, count|
                stat.mean += value*count 
                stat.total_count += count
             end
@@ -260,7 +257,7 @@ class WelcomeController < ApplicationController
             stat.mean /= stat.total_count
             pmf = Hash.new
             
-            values.each do |value, count|
+            set.data.each do |value, count|
                stat.variance += ((value-stat.mean)*(value-stat.mean)*count)
                # pmf is a normalized histogram
                stat.pmf[value] = (count.to_f / stat.total_count)
@@ -274,6 +271,31 @@ class WelcomeController < ApplicationController
                 edf_sum += stat.pmf[score]
                 stat.edf[score] = edf_sum
             end
+            
+            
+            
+            set.vs.each do |value, count|
+               stat.vs_mean += value*count 
+               stat.vs_total_count += count
+            end
+            
+            stat.vs_mean /= stat.vs_total_count
+            pmf = Hash.new
+            
+            set.vs.each do |value, count|
+               stat.vs_variance += ((value-stat.vs_mean)*(value-stat.vs_mean)*count)
+               # pmf is a normalized histogram
+               stat.vs_pmf[value] = (count.to_f / stat.vs_total_count)
+            end
+            
+            stat.vs_variance /= stat.vs_total_count
+            stat.vs_standard_deviation = Math.sqrt(stat.vs_variance)
+            
+            edf_sum = 0
+            (60..100).each do |score|
+                edf_sum += stat.vs_pmf[score]
+                stat.vs_edf[score] = edf_sum
+            end
         end
         
         
@@ -286,50 +308,74 @@ class WelcomeController < ApplicationController
         @cdf  = "['Sleep Score', #{keywords.keys.collect{ |keyword| "'#{keyword}'"}.join(", ")}],\n"
         @cdf << (60..100).each.collect{ |score| "['#{score}', #{@stats.collect{ |stat| Normdist.normdist(score, stat.mean, stat.standard_deviation, true).round(2)}.join(", ")}]"}.join(",\n")
         
-        
-        
-        
-        # assumption: each label is mutually exclusive! (ignore all label)
-        
-        @significant_tests = Array.new
-        
-        @stats.each_with_index do |value, index|
-            if @stats[index].label == "all"
+
+        @stats.each do |stat|
+            if stat.label == "all"
                 next
             end
             
-            ((index+1)..(@stats.length-1)).each do |paired_index|
-                if @stats[paired_index].label == "all"
-                    next 
-                end
-                puts "paired #{index} with #{paired_index}" 
-                @significant_tests << Significant.new(@stats[index], @stats[paired_index])
-           end
+            puts stat.to_string
+            
+            # calculate p value
+            std_part1 = stat.total_count*(stat.standard_deviation**2)
+            std_part2 = stat.vs_total_count*(stat.vs_standard_deviation**2)
+            std_part3 = (std_part1+std_part2)/(stat.total_count+stat.vs_total_count)
+            std_part4 = (stat.total_count*stat.vs_total_count)/((stat.total_count+stat.vs_total_count)**2)
+            std_part5 = (stat.mean-stat.vs_mean)**2
+            std_part6 = std_part4*std_part5
+            pooled_var = std_part3 + std_part6
+            #pooled_var = (stat.standard_deviation+stat.vs_standard_deviation)**2
+        
+            f = (1.0/stat.total_count)+(1.0/stat.vs_total_count)
+            var = f*pooled_var
+            std = Math.sqrt(var)
+            delta = (stat.mean-stat.vs_mean).abs
+            
+            puts "f=#{f} pooled_var=#{pooled_var} var=#{var} std=#{std} delta #{delta}"
+            
+            left = Normdist.normdist(-delta, 0, std, true)
+            right = 1 - Normdist.normdist(delta, 0, std, true)
+            
+            puts "left=#{left} right=#{right}"
+            
+            pvalue = left+right
+            
+            puts "Probability: #{pvalue}"
+            
+            stat.p = pvalue
         end
-        
+
+        puts ""
+
+        #old logic
+
         random_runs = 1000     
-        
-        @significant_tests.each do |significant|
+
+        @stats.each do |stat|
+            if stat.label == "all"
+                next
+            end
+            
             # step 1: combine data from both labels and produce a CDF
-            s1 = significant.stat_1
-            s2 = significant.stat_2
             
-            mean = ((s1.total_count*s1.mean)+(s2.total_count*s2.mean))/(s1.total_count+s2.total_count)
+            mean = ((stat.total_count*stat.mean)+(stat.vs_total_count*stat.vs_mean))/(stat.total_count+stat.vs_total_count)
+            #mean = stat.mean+stat.vs_mean
             
-            std_part1 = s1.total_count*(s1.standard_deviation**2)
-            std_part2 = s2.total_count*(s2.standard_deviation**2)
-            std_part3 = (std_part1+std_part2)/(s1.total_count+s2.total_count)
-            std_part4 = (s1.total_count*s2.total_count)/((s1.total_count+s2.total_count)**2)
-            std_part5 = (s1.mean-s2.mean)**2
+            std_part1 = stat.total_count*(stat.standard_deviation**2)
+            std_part2 = stat.vs_total_count*(stat.vs_standard_deviation**2)
+            std_part3 = (std_part1+std_part2)/(stat.total_count+stat.vs_total_count)
+            std_part4 = (stat.total_count*stat.vs_total_count)/((stat.total_count+stat.vs_total_count)**2)
+            std_part5 = (stat.mean-stat.vs_mean)**2
             std_part6 = std_part4*std_part5
             std = Math.sqrt(std_part3 + std_part6)
+            #std = stat.standard_deviation+stat.vs_standard_deviation
             
             gaus = RandomGaussian.new(mean, std)
             
             
-            mean_diff = (s1.mean-s2.mean).abs
-            puts "mean1 #{s1.mean} std #{s1.standard_deviation}"
-            puts "mean2 #{s2.mean} std #{s2.standard_deviation}"
+            mean_diff = (stat.mean-stat.vs_mean).abs
+            puts "mean1 #{stat.mean} std #{stat.standard_deviation}"
+            puts "mean2 #{stat.vs_mean} std #{stat.vs_standard_deviation}"
             puts "difference in means is #{mean_diff}"
             puts "combined mean #{mean}"
             puts "combined std #{std}"
@@ -339,22 +385,22 @@ class WelcomeController < ApplicationController
             bigger_diff = 0.0;
             
             (1..random_runs).each do |sample|
-                (1..significant.stat_1.total_count).each do |j|
-                    significant.stat_1.random_mean += gaus.rand()
+                (1..stat.total_count).each do |j|
+                    stat.random_mean += gaus.rand()
                 end
                 
-                significant.stat_1.random_mean /= significant.stat_1.total_count
+                stat.random_mean /= stat.total_count
                 
-                (1..significant.stat_2.total_count).each do |j|
-                    significant.stat_2.random_mean += gaus.rand()
+                (1..stat.vs_total_count).each do |j|
+                    stat.vs_random_mean += gaus.rand()
                 end
                 
-                significant.stat_2.random_mean /= significant.stat_2.total_count
+                stat.vs_random_mean /= stat.vs_total_count
 
                 #puts "set1=#{significant.stat_1.random_mean} count=#{significant.stat_1.total_count}"
                 #puts "set2=#{significant.stat_2.random_mean} count=#{significant.stat_2.total_count}"
 
-                rand_diff = significant.stat_1.random_mean-significant.stat_2.random_mean
+                rand_diff = stat.random_mean-stat.vs_random_mean
                 
                 #puts "difference in means is #{mean_diff}"
                 #puts "difference in random means is #{rand_diff}"
@@ -364,9 +410,9 @@ class WelcomeController < ApplicationController
                 end
             end
             
-            significant.result = bigger_diff/random_runs
+            stat.old_p = bigger_diff/random_runs
             
-            puts "Probability: #{significant.result}"
+            puts "Probability: #{stat.old_p}"
         end
     end
 
@@ -438,6 +484,9 @@ end
 
 class Stat
     attr_accessor :label
+    attr_accessor :p
+    attr_accessor :old_p
+    
     attr_accessor :mean
     attr_accessor :variance
     attr_accessor :standard_deviation
@@ -446,8 +495,19 @@ class Stat
     attr_accessor :total_count
     attr_accessor :random_mean
     
+    attr_accessor :vs_mean
+    attr_accessor :vs_variance
+    attr_accessor :vs_standard_deviation
+    attr_accessor :vs_pmf
+    attr_accessor :vs_edf
+    attr_accessor :vs_total_count
+    attr_accessor :vs_random_mean
+    
     def initialize(label)
         @label = label
+        @p = 0.0
+        @old_p = 0.0
+        
         @mean = 0.0
         @random_mean = 0.0
         @variance = 0.0
@@ -456,23 +516,60 @@ class Stat
         @pmf = Array.new
         @edf = Array.new
         
+        @vs_mean = 0.0
+        @vs_random_mean = 0.0
+        @vs_variance = 0.0
+        @vs_standard_deviation = 0.0
+        @vs_total_count = 0.0
+        @vs_pmf = Array.new
+        @vs_edf = Array.new
+        
         (0..100).each do |value|
            @pmf[value] = 0
            @edf[value] = 0
+           @vs_pmf[value] = 0
+           @vs_edf[value] = 0
+        end
+    end
+    
+    def to_string
+        "mean=#{mean} "+
+        "variance=#{variance} "+
+        "std=#{standard_deviation} "+
+        "count=#{total_count} "+
+        "vs_mean=#{vs_mean} "+
+        "vs_variance=#{vs_variance} "+
+        "vs_std=#{vs_standard_deviation} "+
+        "vs_count=#{vs_total_count}"
+    end
+end
+
+class DataSet
+   attr_accessor :data
+   attr_accessor :vs
+   attr_accessor :p
+    
+   def initialize()
+       @data = IncrementHash.new
+       @vs = IncrementHash.new
+       @p = 0.0
+   end
+end
+
+class IncrementHash < Hash
+    def initialize
+       super 
+    end
+    
+    def increment(value)
+        if self.has_key? value
+            self[value] += 1
+        else
+            self[value] = 1
         end
     end
 end
 
-class Significant
-    attr_accessor :stat_1
-    attr_accessor :stat_2
-    attr_accessor :result
-    
-    def initialize(stat_1, stat_2)
-        @stat_1 = stat_1
-        @stat_2 = stat_2
-    end
-end
 
 module Normdist
   def self.normdist x, mean, std, cumulative

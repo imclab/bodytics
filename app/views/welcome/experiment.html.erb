@@ -73,13 +73,17 @@
 		<p><%= stat.label %><br />
 			Mean: <%= number_with_precision(stat.mean, :precision => 2) %><br />
 			Variance: <%= number_with_precision(stat.variance, :precision => 2) %><br />
-			Standard Deviation <%= number_with_precision(stat.standard_deviation, :precision => 2) %><br />
+			Standard Deviation: <%= number_with_precision(stat.standard_deviation, :precision => 2) %><br />
+			Count: <%= number_with_precision(stat.total_count, :precision => 2) %><br />
+			
+			vs_Mean: <%= number_with_precision(stat.vs_mean, :precision => 2) %><br />
+			vs_Variance: <%= number_with_precision(stat.vs_variance, :precision => 2) %><br />
+			vs_Standard Deviation: <%= number_with_precision(stat.vs_standard_deviation, :precision => 2) %><br />
+			vs_Count: <%= number_with_precision(stat.vs_total_count, :precision => 2) %><br />
+			
+			P: <%= number_with_precision(stat.p, :precision => 2) %><br />
+			Old P: <%= number_with_precision(stat.old_p, :precision => 2) %><br />
 		</p>
-	<% end %>
-
-	<h3>Null hypothesis: effect was due to chance</h3>
-	<% @significant_tests.each do |significant| %>
-		<p><%= significant.stat_1.label %> vs <%= significant.stat_2.label %> is <%= significant.result*100.0 %>%</p>
 	<% end %>
 
   </body>
