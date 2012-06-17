@@ -81,8 +81,7 @@
 			vs_Standard Deviation: <%= number_with_precision(stat.vs_standard_deviation, :precision => 2) %><br />
 			vs_Count: <%= number_with_precision(stat.vs_total_count, :precision => 2) %><br />
 			
-			P: <%= number_with_precision(stat.p, :precision => 2) %><br />
-			Old P: <%= number_with_precision(stat.old_p, :precision => 2) %><br />
+			P-value: <%= number_with_precision(stat.p_value, :precision => 4) %><br />
 		</p>
 	<% end %>
 

@@ -290,6 +290,8 @@ class WelcomeController < ApplicationController
             
             stat.vs_variance /= stat.vs_total_count
             stat.vs_standard_deviation = Math.sqrt(stat.vs_variance)
+            stat.data = set.data
+            stat.vs = set.vs
             
             edf_sum = 0
             (60..100).each do |score|
@@ -308,185 +310,26 @@ class WelcomeController < ApplicationController
         @cdf  = "['Sleep Score', #{keywords.keys.collect{ |keyword| "'#{keyword}'"}.join(", ")}],\n"
         @cdf << (60..100).each.collect{ |score| "['#{score}', #{@stats.collect{ |stat| Normdist.normdist(score, stat.mean, stat.standard_deviation, true).round(2)}.join(", ")}]"}.join(",\n")
         
-
         @stats.each do |stat|
             if stat.label == "all"
                 next
             end
             
-            puts stat.to_string
-            
-            # calculate p value
-            std_part1 = stat.total_count*(stat.standard_deviation**2)
-            std_part2 = stat.vs_total_count*(stat.vs_standard_deviation**2)
-            std_part3 = (std_part1+std_part2)/(stat.total_count+stat.vs_total_count)
-            std_part4 = (stat.total_count*stat.vs_total_count)/((stat.total_count+stat.vs_total_count)**2)
-            std_part5 = (stat.mean-stat.vs_mean)**2
-            std_part6 = std_part4*std_part5
-            pooled_var = std_part3 + std_part6
-            #pooled_var = (stat.standard_deviation+stat.vs_standard_deviation)**2
-        
-            f = (1.0/stat.total_count)+(1.0/stat.vs_total_count)
-            var = f*pooled_var
-            std = Math.sqrt(var)
+            std_of_diff = Math.sqrt((stat.variance/stat.total_count)+(stat.vs_variance/stat.vs_total_count))
             delta = (stat.mean-stat.vs_mean).abs
-            
-            puts "f=#{f} pooled_var=#{pooled_var} var=#{var} std=#{std} delta #{delta}"
-            
-            left = Normdist.normdist(-delta, 0, std, true)
-            right = 1 - Normdist.normdist(delta, 0, std, true)
-            
-            puts "left=#{left} right=#{right}"
-            
-            pvalue = left+right
-            
-            puts "Probability: #{pvalue}"
-            
-            stat.p = pvalue
+  
+            # one sided
+
+            stat.p_value = 1-Normdist.normdist(delta, 0, std_of_diff, true)
         end
-
-        puts ""
-
-        #old logic
-
-        random_runs = 1000     
-
-        @stats.each do |stat|
-            if stat.label == "all"
-                next
-            end
-            
-            # step 1: combine data from both labels and produce a CDF
-            
-            mean = ((stat.total_count*stat.mean)+(stat.vs_total_count*stat.vs_mean))/(stat.total_count+stat.vs_total_count)
-            #mean = stat.mean+stat.vs_mean
-            
-            std_part1 = stat.total_count*(stat.standard_deviation**2)
-            std_part2 = stat.vs_total_count*(stat.vs_standard_deviation**2)
-            std_part3 = (std_part1+std_part2)/(stat.total_count+stat.vs_total_count)
-            std_part4 = (stat.total_count*stat.vs_total_count)/((stat.total_count+stat.vs_total_count)**2)
-            std_part5 = (stat.mean-stat.vs_mean)**2
-            std_part6 = std_part4*std_part5
-            std = Math.sqrt(std_part3 + std_part6)
-            #std = stat.standard_deviation+stat.vs_standard_deviation
-            
-            gaus = RandomGaussian.new(mean, std)
-            
-            
-            mean_diff = (stat.mean-stat.vs_mean).abs
-            puts "mean1 #{stat.mean} std #{stat.standard_deviation}"
-            puts "mean2 #{stat.vs_mean} std #{stat.vs_standard_deviation}"
-            puts "difference in means is #{mean_diff}"
-            puts "combined mean #{mean}"
-            puts "combined std #{std}"
-           
-            # step 2: run 1000 tests to find a set of random mean differences and see if they are bigger than 
-            
-            bigger_diff = 0.0;
-            
-            (1..random_runs).each do |sample|
-                (1..stat.total_count).each do |j|
-                    stat.random_mean += gaus.rand()
-                end
-                
-                stat.random_mean /= stat.total_count
-                
-                (1..stat.vs_total_count).each do |j|
-                    stat.vs_random_mean += gaus.rand()
-                end
-                
-                stat.vs_random_mean /= stat.vs_total_count
-
-                #puts "set1=#{significant.stat_1.random_mean} count=#{significant.stat_1.total_count}"
-                #puts "set2=#{significant.stat_2.random_mean} count=#{significant.stat_2.total_count}"
-
-                rand_diff = stat.random_mean-stat.vs_random_mean
-                
-                #puts "difference in means is #{mean_diff}"
-                #puts "difference in random means is #{rand_diff}"
-
-                if rand_diff.abs >= mean_diff
-                    bigger_diff += 1
-                end
-            end
-            
-            stat.old_p = bigger_diff/random_runs
-            
-            puts "Probability: #{stat.old_p}"
-        end
-    end
-
-    def keywords
-        @user = User.find_by_id(session[:user_id])
-
-        if @user == nil || @user.fitbit_uid == nil
-            redirect_to "/auth/facebook"
-        else
-            @keywords = Hash.new
-            @efficiences = Hash.new
-            @total_efficiency = 0
-            
-            sleep = Sleep.where(:user_id => @user.id).all
-            food = Food.where(:user_id => @user.id).all
-
-            puts "sleep size #{sleep.size}"
-
-            sleep.each do |entry|
-                puts "date #{entry.date.to_date-1} has efficiency #{entry.efficiency}"
-                @total_efficiency += entry.efficiency
-                # efficiency score is related to the foods consumed on the previous day
-                @efficiences[entry.date.to_date-1] = entry.efficiency
-            end
-                
-            food.each do |entry|
-                keyword = entry.name.gsub("'", "");
-                
-                puts "using date #{entry.date.to_date} and found #{@efficiences[entry.date.to_date]}"
-                
-                if @efficiences[entry.date.to_date] != nil
-                    if !@keywords.has_key? keyword
-                        puts "adding keyword #{keyword}"
-                        @keywords[keyword] = KeywordAverage.new()
-                    end
-                    
-                    @keywords[keyword].efficiency = ((@keywords[keyword].efficiency*@keywords[keyword].n)+@efficiences[entry.date.to_date])/(@keywords[keyword].n+1)
-                    @keywords[keyword].n += 1
-                end
-            end
-
-            @total_efficiency /= sleep.size
-            
-            #puts "total efficiency #{@total_efficiency}"
-            #puts @keywords.to_yaml
-            
-            @keywords.each do |keyword, entry|
-               puts "#{keyword} is #{entry.efficiency}" 
-            end
-            
-            
-            @data = "['Product', 'Efficiency'],"
-            @data << @keywords.sort_by{|keyword, entry| entry.efficiency}.select{|keyword, entry| entry.n > 10}.collect{|keyword, entry|
-                "['#{keyword} [#{entry.n}]', #{entry.efficiency}]"
-            }.join(",\n")
-        end
-    end
-end
-
-class KeywordAverage
-    attr_accessor :n
-    attr_accessor :efficiency
-
-    def initialize()
-        @efficiency = 0
-        @n = 0
     end
 end
 
 class Stat
     attr_accessor :label
-    attr_accessor :p
-    attr_accessor :old_p
+    attr_accessor :p_value
     
+    attr_accessor :data
     attr_accessor :mean
     attr_accessor :variance
     attr_accessor :standard_deviation
@@ -495,6 +338,7 @@ class Stat
     attr_accessor :total_count
     attr_accessor :random_mean
     
+    attr_accessor :vs
     attr_accessor :vs_mean
     attr_accessor :vs_variance
     attr_accessor :vs_standard_deviation
@@ -505,8 +349,7 @@ class Stat
     
     def initialize(label)
         @label = label
-        @p = 0.0
-        @old_p = 0.0
+        @p_value = 0.0
         
         @mean = 0.0
         @random_mean = 0.0
@@ -607,37 +450,5 @@ module Normdist
   # cumulative normal distribution with mean mu and std deviation sigma
   def self.phi_around z, mu, sigma
     return phi((z - mu) / sigma);
-  end
-end
-
-class RandomGaussian
-  def initialize(mean, stddev, rand_helper = lambda { Kernel.rand })
-    @rand_helper = rand_helper
-    @mean = mean
-    @stddev = stddev
-    @valid = false
-    @next = 0
-  end
-
-  def rand
-    if @valid then
-      @valid = false
-      return @next
-    else
-      @valid = true
-      x, y = self.class.gaussian(@mean, @stddev, @rand_helper)
-      @next = y
-      return x
-    end
-  end
-
-  private
-  def self.gaussian(mean, stddev, rand)
-    theta = 2 * Math::PI * rand.call
-    rho = Math.sqrt(-2 * Math.log(1 - rand.call))
-    scale = stddev * rho
-    x = mean + scale * Math.cos(theta)
-    y = mean + scale * Math.sin(theta)
-    return x, y
   end
 end
