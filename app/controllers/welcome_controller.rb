@@ -161,9 +161,12 @@ class WelcomeController < ApplicationController
         
         days.each do |date, foods|
             # ignore day when we don't have sleep score
-            if !sleeps.has_key? date
+            if !sleeps.has_key?(date) || sleeps[date][0].efficiency == 0
                next 
             end
+
+            
+            puts "score #{sleeps[date][0].efficiency} #{sleeps[date][0].efficiency == 0}"
             
             # score
             value = sleeps[date][0].efficiency
