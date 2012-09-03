@@ -74,11 +74,21 @@
 			Mean: <%= number_with_precision(stat.mean, :precision => 2) %><br />
 			Variance: <%= number_with_precision(stat.variance, :precision => 2) %><br />
 			Standard Deviation: <%= number_with_precision(stat.standard_deviation, :precision => 2) %><br />
+			Median: <%= number_with_precision(stat.median, :precision => 2) %><br />
+			Q1: <%= number_with_precision(stat.q1, :precision => 2) %><br />
+			Q2: <%= number_with_precision(stat.q2, :precision => 2) %><br />
+			Q3: <%= number_with_precision(stat.q3, :precision => 2) %><br />
+			Q4: <%= number_with_precision(stat.q4, :precision => 2) %><br />
 			Count: <%= number_with_precision(stat.total_count, :precision => 2) %><br />
 			
 			vs_Mean: <%= number_with_precision(stat.vs_mean, :precision => 2) %><br />
 			vs_Variance: <%= number_with_precision(stat.vs_variance, :precision => 2) %><br />
 			vs_Standard Deviation: <%= number_with_precision(stat.vs_standard_deviation, :precision => 2) %><br />
+			vs_Median: <%= number_with_precision(stat.vs_median, :precision => 2) %><br />
+			vs_Q1: <%= number_with_precision(stat.vs_q1, :precision => 2) %><br />
+			vs_Q2: <%= number_with_precision(stat.vs_q2, :precision => 2) %><br />
+			vs_Q3: <%= number_with_precision(stat.vs_q3, :precision => 2) %><br />
+			vs_Q4: <%= number_with_precision(stat.vs_q4, :precision => 2) %><br />
 			vs_Count: <%= number_with_precision(stat.vs_total_count, :precision => 2) %><br />
 			
 			P-value: <%= number_with_precision(stat.p_value, :precision => 4) %><br />

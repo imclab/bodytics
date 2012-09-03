@@ -171,6 +171,11 @@ class WelcomeController < ApplicationController
             # score
             value = sleeps[date][0].efficiency
             
+            # ignore outliers
+            if value < 75 
+                next
+            end
+            
             # keep track of all
             keywords["all"].data.increment(value)
 
@@ -251,11 +256,24 @@ class WelcomeController < ApplicationController
         keywords.each do |keyword, set|
             stat = Stat.new(keyword)
             @stats << stat
+        
+            all_data = Array.new
             
             set.data.each do |value, count|
+                
                stat.mean += value*count 
                stat.total_count += count
+               
+               (1..count).each do |i|
+                   all_data.push(value)
+               end
             end
+            
+            stat.median = median(all_data)
+            stat.q1 = percentile(all_data, 0.25)
+            stat.q2 = percentile(all_data, 0.50)
+            stat.q3 = percentile(all_data, 0.75)
+            stat.q4 = percentile(all_data, 1)
             
             stat.mean /= stat.total_count
             pmf = Hash.new
@@ -277,10 +295,21 @@ class WelcomeController < ApplicationController
             
             
             
+            vs_all_data = Array.new
             set.vs.each do |value, count|
                stat.vs_mean += value*count 
                stat.vs_total_count += count
+               
+               (1..count).each do |i|
+                   vs_all_data.push(value)
+               end
             end
+            
+            stat.vs_median = median(vs_all_data)
+            stat.vs_q1 = percentile(vs_all_data, 0.25)
+            stat.vs_q2 = percentile(vs_all_data, 0.50)
+            stat.vs_q3 = percentile(vs_all_data, 0.75)
+            stat.vs_q4 = percentile(vs_all_data, 1)
             
             stat.vs_mean /= stat.vs_total_count
             pmf = Hash.new
@@ -326,6 +355,20 @@ class WelcomeController < ApplicationController
             stat.p_value = 1-Normdist.normdist(delta, 0, std_of_diff, true)
         end
     end
+    
+    def median(ary)
+      return nil if ary.empty?
+      mid, rem = ary.length.divmod(2)
+      if rem == 0
+        ary.sort[mid-1,2].inject(:+) / 2.0
+      else
+        ary.sort[mid]
+      end
+    end
+    
+    def percentile(array, percentile)
+      array.sort[(percentile * array.length).ceil - 1]
+    end
 end
 
 class Stat
@@ -340,6 +383,11 @@ class Stat
     attr_accessor :edf
     attr_accessor :total_count
     attr_accessor :random_mean
+    attr_accessor :median
+    attr_accessor :q1
+    attr_accessor :q2
+    attr_accessor :q3
+    attr_accessor :q4
     
     attr_accessor :vs
     attr_accessor :vs_mean
@@ -349,6 +397,11 @@ class Stat
     attr_accessor :vs_edf
     attr_accessor :vs_total_count
     attr_accessor :vs_random_mean
+    attr_accessor :vs_median
+    attr_accessor :vs_q1
+    attr_accessor :vs_q2
+    attr_accessor :vs_q3
+    attr_accessor :vs_q4
     
     def initialize(label)
         @label = label
