@@ -10,10 +10,11 @@
         ]);
 
         var options = {
-          title: 'Magnesium vs sleep efficiency',
-          hAxis: {title: 'Sleep efficiency'},
-          vAxis: {title: 'Magnesium', minValue: -0.5, maxValue: 3.5},
+          title: 'Experiment Sleep Efficiency',
+          hAxis: {title: 'Sleep Efficiency', minValue: 75, maxValue: 95, baselineColor: '#ffffff'},
+          vAxis: {textColor: '#ffffff', minValue: -0.5, maxValue: 3.5, baselineColor: '#ffffff', gridlines: {color: '#ffffff'}},
           bubble: {textStyle: {fontSize: 11}},
+          chartArea: {left: 50, width: 800}
         };
 
         var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
@@ -28,7 +29,8 @@
 
         var options2 = {
           title: 'Probability Mass Function',
-          hAxis: {title: 'Sleep efficiency'}
+          hAxis: {title: 'Sleep efficiency', minValue: 80, maxValue: 95},
+          chartArea: {left: 50, width: 800}
         };
 
         var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div_pmf'));
@@ -41,7 +43,9 @@
 		]);
 
 		var options3 = {
-		  title: 'Empirical Distribution Function'
+		  title: 'Empirical Distribution Function',
+		  hAxis: {title: 'Sleep efficiency', minValue: 80, maxValue: 95},
+	      chartArea: {left: 50, width: 800}
 		};
 
 	    var chart3 = new google.visualization.LineChart(document.getElementById('chart_div_edf'));
@@ -54,7 +58,9 @@
 		]);
 
 		var options4 = {
-		  title: 'Continuous Distribution Function'
+		  title: 'Continuous Distribution Function',
+		  hAxis: {title: 'Sleep efficiency', minValue: 80, maxValue: 95},
+	      chartArea: {left: 50, width: 800}
 		};
 
 	    var chart4 = new google.visualization.LineChart(document.getElementById('chart_div_cdf'));
@@ -63,10 +69,10 @@
     </script>
   </head>
   <body>
-    <div id="chart_div" style="width: 1000px; height: 600px;"></div>
-    <div id="chart_div_pmf" style="width: 900px; height: 500px;"></div>
-    <div id="chart_div_edf" style="width: 900px; height: 500px;"></div>
-    <div id="chart_div_cdf" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div" style="width: 1100px; height: 600px;"></div>
+    <div id="chart_div_pmf" style="width: 1100px; height: 500px;"></div>
+    <div id="chart_div_edf" style="width: 1100px; height: 500px;"></div>
+    <div id="chart_div_cdf" style="width: 1100px; height: 500px;"></div>
 
 	<h3>Averages</h3>
 	<% @stats.each do |stat| %>
