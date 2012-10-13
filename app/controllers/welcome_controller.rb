@@ -172,7 +172,7 @@ class WelcomeController < ApplicationController
             value = sleeps[date][0].efficiency
             
             # ignore outliers
-            if value < 75 
+            if value < 75 || value > 99
                 next
             end
             
