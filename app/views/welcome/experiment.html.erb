@@ -24,7 +24,7 @@
 
 
 		var data2 = google.visualization.arrayToDataTable([
-          <%= @pmf %>
+          <%= raw @pmf %>
         ]);
 
         var options2 = {
@@ -39,7 +39,7 @@
 
 
 		var data3 = google.visualization.arrayToDataTable([
-		  <%= @edf %>
+		  <%= raw @edf %>
 		]);
 
 		var options3 = {
@@ -54,7 +54,7 @@
 		
 		
 		var data4 = google.visualization.arrayToDataTable([
-		  <%= @cdf %>
+		  <%= raw @cdf %>
 		]);
 
 		var options4 = {
