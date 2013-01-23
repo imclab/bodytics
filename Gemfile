@@ -43,3 +43,6 @@ gem 'fitgem'
 # below two are added for heroku
 gem 'activerecord-postgresql-adapter'
 gem 'therubyracer'
+
+# able to use R
+gem 'rinruby'
