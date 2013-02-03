@@ -45,6 +45,3 @@ gem 'activerecord-postgresql-adapter'
 gem 'therubyracer'
 gem 'thin'
 gem 'pg'
-
-# able to use R
-gem 'rinruby'

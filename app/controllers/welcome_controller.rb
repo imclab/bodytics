@@ -1,5 +1,3 @@
-require 'rinruby'
-
 class WelcomeController < ApplicationController
     def index
         @user = User.find_by_id(session[:user_id])
@@ -16,14 +14,6 @@ class WelcomeController < ApplicationController
         end
         
         @experiments = Experiment.all
-        
-        sample_size = 10
-
-R.eval <<EOF
-  x <- rnorm(#{sample_size})
-EOF
-        
-        @test = R.pull "as.numeric(summary(x))"
     end
 
     def collect_food(client, user)
